@@ -7,9 +7,6 @@ unsigned char map_buf[20];
 
 #define SGB_TRANSFER(A,B) map_buf[0]=(A),map_buf[1]=(B),sgb_transfer(map_buf) 
 
-#define SGB_CHR_BLOCK0 0
-#define SGB_CHR_BLOCK1 1
-
 void transfer_tiles(unsigned char * data, size_t size) {
     UBYTE ntiles;
     if (size > 256 * 32) ntiles = 0; else ntiles = size >> 5;
@@ -34,7 +31,7 @@ void set_sgb_border(unsigned char * tiledata, size_t tiledata_size,
                     unsigned char * palette, size_t palette_size) {
     if (sgb_check()) {
         BGP_REG = OBP0_REG = OBP1_REG = 0xE4U;
-        SGB_TRANSFER((SGB_MASK_EN << 3) | 1, 1); 
+        SGB_TRANSFER((SGB_MASK_EN << 3) | 1, SGB_SCR_FREEZE); 
 
         UBYTE tmp_lcdc = LCDC_REG;
 
@@ -66,6 +63,6 @@ void set_sgb_border(unsigned char * tiledata, size_t tiledata_size,
         for (UBYTE y = 0; y != 18U; ++y)
             set_bkg_tiles(0, y, 20, 1, map_buf);
         
-        SGB_TRANSFER((SGB_MASK_EN << 3) | 1, 0); 
+        SGB_TRANSFER((SGB_MASK_EN << 3) | 1, SGB_SCR_UNFREEZE); 
     }
 }

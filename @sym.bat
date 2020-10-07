@@ -1,3 +1,0 @@
-@echo MAKING SYMBOLS...
-@python .\utils\noi2sym.py .\test_sgb.noi >test_sgb.sym
-@echo DONE!

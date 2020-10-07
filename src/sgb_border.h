@@ -3,6 +3,12 @@
 
 #include <gb/gb.h>
 
+#define SGB_CHR_BLOCK0 0
+#define SGB_CHR_BLOCK1 1
+
+#define SGB_SCR_FREEZE 1
+#define SGB_SCR_UNFREEZE 0
+
 #define SNES_RGB(R,G,B) (UINT16)((B) << 10 | (G) << 5 | (R))
 
 /** sets SGB border */
