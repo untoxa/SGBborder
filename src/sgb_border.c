@@ -3,7 +3,7 @@
 #include <gb/sgb.h>
 #include <string.h>
 
-unsigned char map_buf[20];
+unsigned char map_buf[20] = {0};
 
 #define SGB_TRANSFER(A,B) map_buf[0]=(A),map_buf[1]=(B),sgb_transfer(map_buf) 
 
